@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
-import InputHarshil from 'react-input-harshil'
+import AllInput from 'react-input-harshil'
 import 'react-input-harshil/dist/index.css'
 
 const App = () => {
-  const [completed, setCompleted] = useState(0);
+  const [form, setForm] = useState([
+    { name: 'name', value: '', placeholder: 'Write Your Name' },
+    { name: 'email', value: '', placeholder: 'Write Your Email' },
+    { name: 'phone', value: '', placeholder: 'Write Your Phone No.' }
+  ])
+  const onBlurChange = (e, index) => {
+    let value = e.target.value
+    console.log('form data:>> ', form[index], 'event=>', e);
 
-  useEffect(() => {
-    setInterval(() => setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
-  }, []);
-
+  }
+  const handleChange = (e, index) => {
+    let value = e.target.value
+    console.log('form data:>> ', form[index], 'event=>', e);
+  }
   return (
-    <div className="App">
-      <InputHarshil />
-    </div>
-  );
-};
+    <AllInput
+      form_fields={form}
+      onBlurChange={onBlurChange}
+      handleChange={handleChange}
+    />
+  )
+}
 
-export default App;
+export default App
