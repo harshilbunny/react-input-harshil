@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-import ProgressBar from 'react-input-harshil'
+import InputHarshil from 'react-input-harshil'
 import 'react-input-harshil/dist/index.css'
 
 const App = () => {
@@ -12,7 +11,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <ProgressBar bgcolor={"#6a1b9a"} completed={completed} />
+      <InputHarshil />
     </div>
   );
 };

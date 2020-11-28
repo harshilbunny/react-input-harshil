@@ -1,38 +1,25 @@
-import React from "react";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styles from './styles.module.css'
 
-const ProgressBar = props => {
-  const { bgcolor, completed } = props;
+export default class InputHarshil extends Component {
+  static propTypes = { value: PropTypes.string, placeholder: PropTypes.string }
+  state = { value: '' }
+  componentDidMount() {
+    const { value } = this.props
+    this.setState({ value: value })
+  }
+  handleInputChange = e => {
+    const { value } = e.target
 
-  const containerStyles = {
-    height: 20,
-    width: "100%",
-    backgroundColor: "#e0e0de",
-    borderRadius: 50,
-    margin: 50
-  };
+    this.setState({ value: value })
+  }
 
-  const fillerStyles = {
-    height: "100%",
-    width: `${completed}%`,
-    backgroundColor: bgcolor,
-    transition: "width 1s ease-in-out",
-    borderRadius: "inherit",
-    textAlign: "right"
-  };
+  inputNode = () => {
+    const { placeholder } = this.props
+    const { value } = this.state
+    return (<input className={styles.input} type='text' placeholder={placeholder} value={value} onChange={this.handleInputChange} />)
+  }
 
-  const labelStyles = {
-    padding: 5,
-    color: "white",
-    fontWeight: "bold"
-  };
-
-  return (
-    <div style={containerStyles}>
-      <div style={fillerStyles}>
-        <span style={labelStyles}>{`${completed}%`}</span>
-      </div>
-    </div>
-  );
-};
-
-export default ProgressBar;
+  render() { return <div className={styles.container}>{this.inputNode()}</div> }
+}
